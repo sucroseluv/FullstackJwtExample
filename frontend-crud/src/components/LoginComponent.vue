@@ -1,0 +1,41 @@
+<template>
+  <div class="column wrap justify-center login-form">
+    <div style="max-width: 480px">
+      <div class="header">Login</div>
+      <q-input label="E-mail" v-model="email" />
+      <q-input label="Password" v-model="password" />
+      <div class="row wrap justify-between login-form-buttons" style="">
+        <q-btn @click="goToRegister">Register</q-btn>
+        <q-btn icon="login" label="Login" />
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+
+const router = useRouter();
+const email = new ref('');
+const password = new ref('');
+function goToRegister() {
+  router.push('/register/');
+}
+</script>
+<style>
+.login-form {
+  flex: 1;
+  margin: 10px;
+  padding: 30px;
+  max-width: 480px;
+  border-radius: 30px;
+  background-color: white;
+}
+.login-form-buttons {
+  margin-top: 20px;
+}
+.header {
+  font-size: 28px;
+  text-align: center;
+}
+</style>
