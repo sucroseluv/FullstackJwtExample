@@ -20,20 +20,14 @@ export class UsersController {
   @UseGuards(AccessTokenGuard)
   @Get('me')
   getInfo(@Req() req: Request) {
-    return this.usersService
-      .findById(req.user['sub'])
-      .select('-_id -refreshToken -password -__v');
+    return this.usersService.findPublicInfoById(req.user['sub']);
   }
 
   @UseGuards(AccessTokenGuard)
   @Patch('me')
-  async update(
-    @Req() req: Request,
-    @Res() res: Response,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
+  async update(@Req() req: Request, @Body() updateUserDto: UpdateUserDto) {
     await this.usersService.update(req.user['sub'], updateUserDto);
-    return res.redirect('/users/me');
+    return this.usersService.findPublicInfoById(req.user['sub']);
   }
 
   @UseGuards(AccessTokenGuard)

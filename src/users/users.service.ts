@@ -26,6 +26,10 @@ export class UsersService {
     return this.userModel.findOne({ email }).exec();
   }
 
+  findPublicInfoById(id: string) {
+    return this.findById(id).select('-_id -refreshToken -password -__v');
+  }
+
   updateToken(id: string, refreshToken: string): Promise<UserDocument> {
     return this.userModel
       .findByIdAndUpdate(id, { refreshToken }, { new: true })
