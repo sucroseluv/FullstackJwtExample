@@ -25,14 +25,18 @@ const router = useRouter();
 const error = ref('');
 
 defineOptions({
-  name: 'LoginPage',
+  name: 'RegisterPage',
 });
+
+if (userStore.isLogged) {
+  router.push('/profile/');
+}
 
 async function register(email: string, password: string) {
   const { data, error: errorMessage } = await signUp(email, password);
   if (errorMessage) {
     error.value = errorMessage;
-  } else {
+  } else if (data) {
     userStore.setTokens(data.accessToken, data.refreshToken);
     router.push('/profile/');
   }

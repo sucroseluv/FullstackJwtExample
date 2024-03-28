@@ -28,11 +28,17 @@ defineOptions({
   name: 'LoginPage',
 });
 
+if (userStore.isLogged) {
+  console.log('userStore.isLogged');
+  console.log(userStore.isLogged);
+  router.push('/profile/');
+}
+
 async function login(email: string, password: string) {
   let { data, error: errorMessage } = await signIn(email, password);
   if (errorMessage) {
     error.value = errorMessage;
-  } else {
+  } else if (data) {
     userStore.setTokens(data.accessToken, data.refreshToken);
     router.push('/profile/');
   }

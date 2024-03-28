@@ -7,7 +7,7 @@
         <q-input label="Password" v-model="password" />
         <div class="row wrap justify-between login-form-buttons" style="">
           <q-btn @click="goToRegister">{{ leftButtonName }}</q-btn>
-          <q-btn icon="login" label="Login" @click="sign" />
+          <q-btn icon="login" :label="title" @click="sign" />
         </div>
       </div>
     </div>
