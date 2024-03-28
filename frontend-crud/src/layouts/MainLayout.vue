@@ -3,7 +3,7 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title> Testovoe1 </q-toolbar-title>
-        <q-btn icon="logout" label="Log out " />
+        <q-btn v-if="isLogged" icon="logout" label="Log out " />
       </q-toolbar>
     </q-header>
 
@@ -14,6 +14,10 @@
 </template>
 
 <script setup lang="ts">
+import { useUserStore } from 'src/stores/user-store';
+import { computed } from 'vue';
+const user = useUserStore();
+const isLogged = computed(() => user.isLogged);
 defineOptions({
   name: 'MainLayout',
 });
