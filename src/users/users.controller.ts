@@ -33,6 +33,7 @@ export class UsersController {
   @UseGuards(AccessTokenGuard)
   @Delete('me')
   remove(@Req() req: Request) {
-    return this.usersService.remove(req.user['sub']);
+    this.usersService.remove(req.user['sub']);
+    return 'success';
   }
 }
