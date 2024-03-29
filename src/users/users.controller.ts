@@ -6,9 +6,8 @@ import {
   Delete,
   UseGuards,
   Req,
-  Res,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AccessTokenGuard } from 'src/common/guards/accessToken.guard';
