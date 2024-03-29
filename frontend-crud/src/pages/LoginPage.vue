@@ -29,8 +29,6 @@ defineOptions({
 });
 
 if (userStore.isLogged) {
-  console.log('userStore.isLogged');
-  console.log(userStore.isLogged);
   router.push('/profile/');
 }
 

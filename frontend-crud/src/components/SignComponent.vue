@@ -1,11 +1,24 @@
 <template>
-  <div class="login-block">
-    <div class="column wrap justify-center login-form">
+  <div class="container-block">
+    <div class="column wrap justify-center container-form">
       <div style="max-width: 480px">
         <div class="header">{{ title }}</div>
         <q-input label="E-mail" v-model="email" />
-        <q-input label="Password" v-model="password" />
-        <div class="row wrap justify-between login-form-buttons" style="">
+        <q-input
+          label="Password"
+          type="password"
+          :rules="
+            title === 'Register'
+              ? [
+                  (val) => val.length >= 8 || 'Please use minimum 8 characters',
+                  (val) =>
+                    val.length <= 20 || 'Please use maximum 20 characters',
+                ]
+              : [() => true]
+          "
+          v-model="password"
+        />
+        <div class="row wrap justify-between container-form-buttons">
           <q-btn @click="goToRegister">{{ leftButtonName }}</q-btn>
           <q-btn icon="login" :label="title" @click="sign" />
         </div>
@@ -45,31 +58,3 @@ function sign() {
   clickHandler(email.value, password.value);
 }
 </script>
-
-<style>
-.login-block {
-  flex: 1;
-  margin: 10px;
-  max-width: 480px;
-}
-.login-form {
-  border-radius: 30px;
-  padding: 30px;
-  background-color: white;
-}
-.login-form-buttons {
-  margin-top: 20px;
-}
-.header {
-  font-size: 28px;
-  text-align: center;
-}
-.error-message {
-  margin: auto;
-  margin-top: 20px;
-  width: 480px;
-  left: 0;
-  right: 0;
-  border-radius: 15px;
-}
-</style>

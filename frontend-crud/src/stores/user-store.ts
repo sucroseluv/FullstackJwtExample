@@ -38,6 +38,12 @@ export const useUserStore = defineStore<'user', UserStore, any, UserActions>(
         this.isLogged = false;
         this.accessToken = undefined;
         this.refreshToken = undefined;
+        this.userInfo = {
+          name: '',
+          phone: '',
+          address: '',
+          info: '',
+        };
         localStorage.accessToken = undefined;
         localStorage.refreshToken = undefined;
       },

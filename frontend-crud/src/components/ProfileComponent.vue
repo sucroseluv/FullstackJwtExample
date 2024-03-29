@@ -1,6 +1,6 @@
 <template>
-  <div class="login-block">
-    <div class="column wrap justify-center login-form">
+  <div class="container-block">
+    <div class="column wrap justify-center container-form">
       <div style="max-width: 480px">
         <div class="header q-mb-md">My Account</div>
         <q-input
@@ -12,6 +12,7 @@
         <q-input
           class="q-mb-md"
           label="Phone"
+          mask="phone"
           v-model="inputs.phone.value"
           outlined
         />
@@ -29,7 +30,7 @@
           outlined
         />
 
-        <div class="row wrap justify-between login-form-buttons" style="">
+        <div class="row wrap justify-between container-form-buttons" style="">
           <q-btn
             v-show="!textsChanged"
             @click="confirmDelete = true"
@@ -154,31 +155,3 @@ async function deleteMyAccount() {
   }
 }
 </script>
-
-<style>
-.login-block {
-  flex: 1;
-  margin: 10px;
-  max-width: 480px;
-}
-.login-form {
-  border-radius: 30px;
-  padding: 30px;
-  background-color: white;
-}
-.login-form-buttons {
-  margin-top: 20px;
-}
-.header {
-  font-size: 28px;
-  text-align: center;
-}
-.error-message {
-  margin: auto;
-  margin-top: 20px;
-  width: 480px;
-  left: 0;
-  right: 0;
-  border-radius: 15px;
-}
-</style>
