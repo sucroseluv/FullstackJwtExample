@@ -112,14 +112,20 @@ onMounted(() => {
 
 const textsChanged = computed(() => {
   return Object.entries(inputs).some(
-    ([key, value]) => (realInfo?.value?.[key] ?? '') !== value.value
+    ([key, value]) =>
+      (realInfo?.value?.[key as keyof typeof inputs] ?? '') !== value.value
   );
 });
 function resetChanges() {
-  Object.keys(inputs).forEach((key) => (inputs[key].value = ''));
-  Object.entries(realInfo?.value).forEach(([key, value]) => {
-    if (inputs[key]) inputs[key].value = value ?? '';
-  });
+  if (realInfo?.value) {
+    Object.keys(inputs).forEach(
+      (key) => (inputs[key as keyof typeof inputs].value = '')
+    );
+    Object.entries(realInfo?.value).forEach(([key, value]) => {
+      if (inputs[key as keyof typeof inputs])
+        inputs[key as keyof typeof inputs].value = value ?? '';
+    });
+  }
 }
 
 const handleRequest = async (callback: () => any) => {

@@ -49,7 +49,8 @@ export const useUserStore = defineStore<'user', UserStore, any, UserActions>(
       },
       setUserInfo(userInfo) {
         Object.entries(userInfo).forEach(([key, value]) => {
-          this.userInfo[key] = value;
+          if (this.userInfo)
+            this.userInfo[key as keyof UserInfoOptional] = value;
         });
       },
     },
