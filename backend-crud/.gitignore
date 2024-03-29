@@ -36,3 +36,4 @@ lerna-debug.log*
 
 # Key strings
 .env
+.env.sample
